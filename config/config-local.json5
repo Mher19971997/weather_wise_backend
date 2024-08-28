@@ -1,0 +1,71 @@
+{
+  app: {
+    env: 'local',
+    name: 'app',
+    logging: 'debug',
+    // 'log' | 'error' | 'warn' | 'debug' | 'verbose'
+  },
+  'app-api': {
+    version: 'v1',
+    endpoint: '/api',
+    http: {
+      host: '127.0.0.1',
+      port: 6001,
+    },
+  },
+  transports: ['http', 'tcp'],
+  db: {
+    postgres: {
+      url: 'postgresql://postgres:root@127.0.0.1:5432/miim',
+      logging: 'debug',
+      dialect: 'postgres',
+      database: 'miim',
+      repositoryMode: true,
+      retryDelay: 100,
+      retryAttempts: 1000,
+      autoLoadModels: true,
+      synchronize: false,
+      benchmark: true,
+      pool: {
+        min: 0,
+        max: 15,
+        idle: 0,
+        evict: 0,
+      },
+    },
+    redis: {
+      url: 'redis://:rB4dRlrn38FGrth1XdHggEgW1YZbfb0B@10.0.0.3:6379/1',
+    },
+  },
+  crypto: {
+    pbkdf2: {
+      iterations: 1000,
+      keylen: 513,
+      digest: 'sha512',
+      secret: "qwerqyuiqpasdqgqwerghjkmnnbvchjklzqcvbnm1234567890-=[];',./",
+    },
+    cipheriv: {
+      algorithm: 'aes-256-ctr',
+      key: 'vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3',
+      iv: 'aecefb6794c7974085fb61aa86cccb3c',
+    },
+    jwt: {
+      secret: 'vOVH6sdmpaWjRRIqCardxsaa01lwHzfr3.aecefb679scx974085fb61ac8ccecb3c',
+      extraOptions: {
+        shortExpiresIn: '1 d',
+        longExpiresIn: '30 d',
+      },
+      signOptions: {
+        algorithm: 'HS256',
+        expiresIn: '365 d',
+      },
+    },
+  },
+  service: {
+    'internal-user': {
+      email: 'mher.melqonyan.mher123@gmail.com',
+      password: 'glpat-VP4_4aW-eTc9JbEgwgxM',
+    },
+
+  },
+}

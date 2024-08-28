@@ -1,0 +1,40 @@
+{
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "declaration": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "sourceMap": true,
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "paths": {
+      "@weather_wise_backend/src": ["src"],
+      "@weather_wise_backend/src/*": ["src/*"],
+      "@weather_wise_backend/migration": ["migration"],
+      "@weather_wise_backend/migration/*": ["migration/*"],
+      "@weather_wise_backend/configuration": ["configuration"],
+      "@weather_wise_backend/configuration/*": ["configuration/*"],
+      "@weather_wise_backend/src/auth": ["src/auth"],
+      "@weather_wise_backend/src/auth/*": ["src/auth/*"],
+      "@weather_wise_backend/src/user": ["src/user"],
+      "@weather_wise_backend/src/user/*": ["src/user/*"],
+      "@weather_wise_backend/shared": ["libs/shared"],
+      "@weather_wise_backend/shared/*": ["libs/shared/*"],
+      "@weather_wise_backend/service": ["libs/service"],
+      "@weather_wise_backend/service/*": ["libs/service/*"]
+    }
+  }
+}

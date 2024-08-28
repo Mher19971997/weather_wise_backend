@@ -16,10 +16,10 @@
   transports: ['http', 'tcp'],
   db: {
     postgres: {
-      url: 'postgresql://postgres:root@127.0.0.1:5432/miim',
+      url: 'postgresql://postgres:root@127.0.0.1:5432/weather',
       logging: 'debug',
       dialect: 'postgres',
-      database: 'miim',
+      database: 'weather',
       repositoryMode: true,
       retryDelay: 100,
       retryAttempts: 1000,

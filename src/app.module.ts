@@ -9,6 +9,9 @@ import { ServiceModule } from '@weather_wise_backend/service/src/service.module'
 import { ConfigModule } from '@weather_wise_backend/shared/src/config/config.module';
 import { SequelizeModule } from '@weather_wise_backend/shared/src/sequelize/sequelize.module';
 import { FilesModule } from '@weather_wise_backend/shared/src/files/files.module';
+import { ConfigurationService } from './configuration/configuration.service';
+import { CryptoService } from '@weather_wise_backend/shared/src/crypto/crypto.service';
+import { JwtStrategy } from './auth/strategies/jwt.strategy';
 
 @Module({
   imports: [
@@ -16,13 +19,13 @@ import { FilesModule } from '@weather_wise_backend/shared/src/files/files.module
     ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static') }),
     ConfigModule.forRoot(),
     AuthModule,
-    UserModule, 
+    UserModule,
     ContactModule,
     SequelizeModule,
     FilesModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [CryptoService, ConfigurationService, JwtStrategy],
 })
 
-export class AppModule {}
+export class AppModule { }

@@ -147,6 +147,8 @@ CREATE TABLE "public"."users" (
     "uuid" uuid DEFAULT "public".uuid_generate_v4() NOT NULL,
     "userId" integer DEFAULT "public".random_between(1000000, 1999999) NOT NULL,
     "email" text NOT NULL,
+    "requestCount" INTEGER DEFAULT 0,
+    "requestLimit" INTEGER DEFAULT 100,
     "password" text NOT NULL,
     "secret" text NOT NULL,
     "roles" jsonb DEFAULT '[]'::jsonb NOT NULL,
@@ -158,6 +160,24 @@ COMMENT ON TABLE "public"."users" IS 'Global user list for product';
 
 ALTER TABLE ONLY "public"."users"
     ADD CONSTRAINT "users_pk" PRIMARY KEY ("uuid");
+
+CREATE TABLE "public"."contacts" (
+    "uuid" uuid DEFAULT "public".uuid_generate_v4() NOT NULL,
+    "value" text NOT NULL,
+    "info" jsonb NOT NULL,
+    "type" text,
+    "status" text NOT NULL,  
+    "code" text NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now(),
+    "updatedAt" timestamp without time zone DEFAULT now(),
+    "deletedAt" timestamp without time zone
+);
+
+ALTER TABLE ONLY "public"."configurations"
+ADD CONSTRAINT "configurations_pk" PRIMARY KEY ("uuid");
+
+ALTER TABLE ONLY "public"."contacts"
+ADD CONSTRAINT "contacts_pk" PRIMARY KEY ("uuid");
 
 CREATE INDEX "configurations_audience_platform_index" ON "public"."configurations" USING btree ((((audience ->> 'platform'::text))::character varying)) WHERE ((audience ->> 'platform'::text) IS NOT NULL);
 
@@ -192,7 +212,10 @@ VALUES
 ('user', 'role', '{"access": ["admin", "manager", "user"], "operation": "GET:/api/v1/user/:uuid"}'),
 ('user', 'role', '{"access": ["admin"], "operation": "GET:/api/v1/user"}'),
 ('user', 'role', '{"access": ["admin"], "operation": "DELETE:/api/v1/user/:uuid"}'),
-('user', 'role', '{"access": ["admin"], "operation": "PATCH:/api/v1/user/:uuid"}');
+('user', 'role', '{"access": ["admin"], "operation": "PATCH:/api/v1/user/:uuid"}'),
+('user', 'role', '{"access": ["any"], "operation": "POST:/api/v1/auth/register"}'),
+('user', 'role', '{"access": ["any"], "operation": "POST:/api/v1/auth/login"}'),
+('user', 'role', '{"access": ["user"], "operation": "GET:/api/v1/weather"}');
     `,
         { transaction },
       );

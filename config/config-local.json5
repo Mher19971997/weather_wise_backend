@@ -12,14 +12,21 @@
       host: '127.0.0.1',
       port: 6001,
     },
+    swagger: {
+      servers: [
+        'http://localhost:6001',
+      ],
+      user: 'swagger',
+      pass: 'swagger123',
+    },
   },
   transports: ['http', 'tcp'],
   db: {
     postgres: {
-      url: 'postgresql://postgres:root@127.0.0.1:5432/weather',
+      url: 'postgresql://postgres:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@127.0.0.1:5433/dev',
       logging: 'debug',
       dialect: 'postgres',
-      database: 'weather',
+      database: 'dev',
       repositoryMode: true,
       retryDelay: 100,
       retryAttempts: 1000,
@@ -34,8 +41,13 @@
       },
     },
     redis: {
-      url: 'redis://:rB4dRlrn38FGrth1XdHggEgW1YZbfb0B@10.0.0.3:6379/1',
+      url: 'redis://:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@127.0.0.1:6379/1',
     },
+  },
+  queue: {
+      amqp: {
+        url:"amqp://rabbitmq:rB4dRlyn32FGSth7XdH33MEwWSYZgf70B@rabbitmq:5672"
+      },
   },
   crypto: {
     pbkdf2: {
@@ -62,10 +74,15 @@
     },
   },
   service: {
-    'internal-user': {
-      email: 'mher.melqonyan.mher123@gmail.com',
-      password: 'glpat-VP4_4aW-eTc9JbEgwgxM',
+    nodemailer: {
+      auth: {
+        pass: 'vrmovwwjjswcpkgh',
+        user: 'mher.melqonyan.mher123@gmail.com'
+      },
+      service: 'gmail'
     },
-
+    openweather: {
+      apiKey: "c12bdbbf56bfc35592a66988f9acd4a1"
+    }
   },
 }

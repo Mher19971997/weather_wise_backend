@@ -1,0 +1,69 @@
+version: '3'
+services:
+  redis:
+    image: redis:latest
+    hostname: redis
+    restart: always
+    command: redis-server --requirepass rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+    ports:
+      - '6379:6379'
+    networks:
+      - visit-stats-network
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: rabbitmq
+    restart: always
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rB4dRlyn32FGSth7XdH33MEwWSYZgf70B
+      RABBITMQ_MANAGEMENT_DISABLE: "false"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    command: rabbitmq-server
+    networks:
+      - visit-stats-network
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    hostname: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '5433:5432'  # Maps host 5433 to container 5432
+    networks:
+      - visit-stats-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '6001:6001'
+  #   networks:
+  #     - visit-stats-network
+  #   depends_on:
+  #     - redis
+  #     - rabbitmq
+  #     - postgres
+  #   environment:
+  #     REDIS_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+  #     RABBITMQ_USER: rabbitmq
+  #     RABBITMQ_PASSWORD: rB4dRlyn32FGSth7XdH33MEwWSYZgf70B
+  #     POSTGRES_DB: dev
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+  #   command: [ "npm", "run", "start:prod" ]
+volumes:
+  db-data:
+
+networks:
+  visit-stats-network:
+    external: true

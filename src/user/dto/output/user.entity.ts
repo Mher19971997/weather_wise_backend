@@ -11,10 +11,6 @@ import { UUID } from '@weather_wise_backend/shared/src/sequelize/meta';
       type: 'string',
       format: 'email',
     },
-    phone: {
-      type: 'string',
-      phoneNumber: true
-    },
     userId: {
       type: 'string',
     },
@@ -39,20 +35,6 @@ import { UUID } from '@weather_wise_backend/shared/src/sequelize/meta';
 export class UserEntity extends CommonEntity {
   @ApiProperty({ required: false })
   declare email?: string;
-  @ApiProperty({ required: false })
-  declare phone?: string;
-  @ApiProperty()
-  declare name?: string;
-  @ApiProperty()
-  declare surname?: string;
-  @ApiProperty()
-  declare city?: string;
-  @ApiProperty()
-  declare street?: string;
-  @ApiProperty()
-  declare bilding_number?: string;
-  @ApiProperty()
-  declare apartment_suite?: string;
   @ApiProperty({ required: false, readOnly: true })
   declare password?: string;
   @ApiProperty({ required: false })

@@ -5,6 +5,7 @@ export namespace constants {
   export const VERIFY_EMAIL = 'verify-contact';
   export const VERIFY_PHONE = 'verify-phone';
   export const FORGET_PASSWORD = 'forgot-password';
+  export const USER_LIMIT_EXCEEDED = 'user-limit-exceeded';
   export const ACCOUNT_DEACTIVATION = 'account-deactivation';
   export const ACCOUNT_REACTIVATION = 'account-reactivation';
   export const CHANGE_PASSWORD = 'change-password';
@@ -90,6 +91,8 @@ export namespace constants {
   export const QUEUE_NOTIFICATION = 'notification';
 
   export const QUEUE_VERIFY_EMAIL = 'verifyContact';
+  export const QUEUE_USER_LIMIT_EXCEEDED = 'userLimitExceeded';
+  // user-limit-exceeded
   export const QUEUE_CHANGE_EMAIL = 'changeEmail';
   export const QUEUE_FORGET_PASSWORD = 'forgotPassword';
   export const QUEUE_ACCOUNT_DEACTIVATION = 'accountDeactivation';

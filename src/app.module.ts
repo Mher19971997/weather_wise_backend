@@ -9,20 +9,26 @@ import { ServiceModule } from '@weather_wise_backend/service/src/service.module'
 import { ConfigModule } from '@weather_wise_backend/shared/src/config/config.module';
 import { SequelizeModule } from '@weather_wise_backend/shared/src/sequelize/sequelize.module';
 import { FilesModule } from '@weather_wise_backend/shared/src/files/files.module';
-import { ConfigurationService } from './configuration/configuration.service';
+import { ConfigurationService } from '@weather_wise_backend/src/configuration/configuration.service';
 import { CryptoService } from '@weather_wise_backend/shared/src/crypto/crypto.service';
-import { JwtStrategy } from './auth/strategies/jwt.strategy';
+import { JwtStrategy } from '@weather_wise_backend/src/auth/strategies/jwt.strategy';
+import { OpenweatherModule } from '@weather_wise_backend/shared/src/openweather/openweather.module';
+import { WeatherModule } from '@weather_wise_backend/src/weather/weather.module';
+import { ConfigurationModule } from '@weather_wise_backend/src/configuration/configuration.module';
 
 @Module({
   imports: [
     ServiceModule.register(),
     ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static') }),
     ConfigModule.forRoot(),
+    ConfigurationModule,
     AuthModule,
     UserModule,
     ContactModule,
     SequelizeModule,
     FilesModule,
+    OpenweatherModule,
+    WeatherModule,
   ],
   controllers: [],
   providers: [CryptoService, ConfigurationService, JwtStrategy],

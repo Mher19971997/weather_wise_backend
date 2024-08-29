@@ -22,21 +22,6 @@ export class User extends CommonModel<UserEntity> {
   @st.Column({
     type: st.DataType.STRING,
   })
-  declare name: string;
-
-  @st.Column({
-    type: st.DataType.STRING,
-  })
-  declare phone: string;
-
-  @st.Column({
-    type: st.DataType.STRING,
-  })
-  declare surname: string;
-
-  @st.Column({
-    type: st.DataType.STRING,
-  })
   declare password: string;
 
   @st.Column({

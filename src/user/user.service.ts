@@ -9,6 +9,7 @@ import { userDto } from '@weather_wise_backend/src/user/dto';
 import { ConfigService } from '@weather_wise_backend/shared/src/config/config.service';
 import { CryptoService } from '@weather_wise_backend/shared/src/crypto/crypto.service';
 import { BearerUser } from './dto/output';
+import { UUID } from '@weather_wise_backend/shared/src/sequelize/meta';
 
 @Injectable()
 export class UserService extends CommonService<
@@ -25,7 +26,7 @@ export class UserService extends CommonService<
     private readonly paginateService: FilterService,
     private readonly configService: ConfigService,
     private readonly cryptoService: CryptoService,
-    ) {
+  ) {
     super({ model: userModel, paginateService });
   }
 
@@ -33,7 +34,7 @@ export class UserService extends CommonService<
   async getProfile(user: BearerUser) {
     return this.findOne({ uuid: user.userUuid, attributeMeta: { exclude: userDto.outputs.excludeFields } });
   }
-  
+
   async create(inputDto: userDto.inputs.CreateUserInput) {
     const res = await super.create(inputDto);
     return this.findOne({ uuid: res.uuid, attributeMeta: { exclude: userDto.outputs.excludeFields } });
@@ -54,5 +55,10 @@ export class UserService extends CommonService<
 
     const password = await this.cryptoService.hashPassword(userDto.password, secret);
     return { ...userDto, secret, password } as userDto.outputs.UserEntity;
+  }
+
+  async incrementRequestCount(uuid: UUID) {
+    const user = await super.findOne({ uuid });
+    await this.update({ uuid }, { requestCount: user.requestCount + 1 });
   }
 }

@@ -16,11 +16,10 @@ export namespace l10n {
   export const new_email_must_different_from_old = 'new_email_must_different_from_old';
   export const new_phone_must_different_from_old = 'new_phone_must_different_from_old';
   export const something_went_wrong = 'something_went_wrong';
-  export const account_email_verification_subject = 'Account Verification <Text-nPayMe account>';
-  export const account_phoneNumber_verification_subject = 'Account Verification <Text-nPayMe account>';
-  export const account_phoneNumber_verification_message = 'Welcome to Text-nPayMe  your verification code is :code';
-  export const account_email_forget_password_subject = `Forget Password <Text-nPayMe account>`;
   export const module_not_payable = `module_not_payable`;
+  export const account_email_verification_subject = `account_email_verification_subject`;
+  export const email_from = `Weather`;
+  
   export const not_found = `not_found`;
   export const wrong_payment = `wrong_payment`;
   export const wrong_transaction = `wrong_transaction`;

@@ -4,7 +4,8 @@ import ajvKeywords from 'ajv-keywords';
 import ajvMergePatch from 'ajv-merge-patch';
 import ajvErrors from 'ajv-errors';
 import { MemoryStoredFile } from 'nestjs-form-data';
-import {phone} from 'phone';
+import { phone } from 'phone';
+import * as cities from "cities-list";
 
 const ajvLib = ajvErrors(
   ajvKeywords(
@@ -59,8 +60,8 @@ ajvLib.addKeyword({
   schema: true,
   errors: 'full',
   validate: (
-      schema: any,
-      data: string
+    schema: any,
+    data: string
   ) => {
     const { isValid } = phone(data);
     return isValid;

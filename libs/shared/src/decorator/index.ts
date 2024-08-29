@@ -3,6 +3,7 @@ import { user as _user } from './user.decorator';
 import { cache as _cache } from './cache.decorator';
 import { sequelize as _sequelize } from './sequelize.decorator';
 import { mixin as _mixin } from './mixin.decorator';
+import { amqp as _amqp } from './amqp.decorator';
 
 export namespace decorator {
   export import ajv = _ajv;
@@ -10,4 +11,5 @@ export namespace decorator {
   export import cache = _cache;
   export import sequelize = _sequelize;
   export import mixin = _mixin;
+  export import amqp = _amqp;
 }

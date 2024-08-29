@@ -16,31 +16,31 @@ export class AuthService {
     private readonly cryptoService: CryptoService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-    
-    ) {}
 
-    private async generateTokens(payload: any): Promise<authDto.outputs.LoginOutput | null>{
-      return {
-        access_token: this.jwtService.sign(payload, {
-          expiresIn: this.configService.get<string>(`crypto.jwt.extraOptions.shortExpiresIn`), //'1 d',
-          secret: this.configService.get<string>('crypto.jwt.secret'),
-        }),
-        refresh_token: this.jwtService.sign(payload, {
-          expiresIn: this.configService.get<string>(`crypto.jwt.extraOptions.longExpiresIn`), //'30 d'
-          secret: this.configService.get<string>('crypto.jwt.secret'),
-        }),
-      }
-    }
+  ) { }
 
-    async validateUser(token: string): Promise<Partial<any> | null> {
-      const data = this.jwtService.decode(token) as { user: string };
-      const user = await this.userService.findOne({ uuid: data.user });
-      if (user) {
-        this.jwtService.verify(token, { secret: user.secret });
-        return ___.pick(user, ['_id', 'roles']);
-      }
-      return null;
+  private async generateTokens(payload: any): Promise<authDto.outputs.LoginOutput | null> {
+    return {
+      access_token: this.jwtService.sign(payload, {
+        expiresIn: this.configService.get<string>(`crypto.jwt.extraOptions.shortExpiresIn`), //'1 d',
+        secret: this.configService.get<string>('crypto.jwt.secret'),
+      }),
+      refresh_token: this.jwtService.sign(payload, {
+        expiresIn: this.configService.get<string>(`crypto.jwt.extraOptions.longExpiresIn`), //'30 d'
+        secret: this.configService.get<string>('crypto.jwt.secret'),
+      }),
     }
+  }
+
+  async validateUser(token: string): Promise<Partial<any> | null> {
+    const data = this.jwtService.decode(token) as { user: string };
+    const user = await this.userService.findOne({ uuid: data.user });
+    if (user) {
+      this.jwtService.verify(token, { secret: user.secret });
+      return ___.pick(user, ['_id', 'roles']);
+    }
+    return null;
+  }
 
   async checkContact(inputDto: authDto.inputs.CheckContactInput): Promise<any | null> {
     return inputDto;
@@ -53,9 +53,6 @@ export class AuthService {
   async register(inputDto: authDto.inputs.RegisterInput): Promise<any | null> {
     const userRes = await this.userService.findOne(___.pick(inputDto, ['email']));
     assert(!userRes, l10n.email_exist);
-
-    const phoneNumberRes = await this.userService.findOne(___.pick(inputDto, ['phone']));
-    assert(!phoneNumberRes, l10n.phone_exist);
 
     const userInput = await this.userService.password(inputDto);
     return await this.userService.create({
@@ -73,6 +70,6 @@ export class AuthService {
 
     const payload = { sub: await this.cryptoService.encrypt(`${userRes.uuid}`) };
 
-    return this.generateTokens(payload) 
+    return this.generateTokens(payload)
   }
 }

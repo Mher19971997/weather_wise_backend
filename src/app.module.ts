@@ -4,7 +4,6 @@ import * as path from 'path'
 
 import { UserModule } from '@weather_wise_backend/src/user/user.module';
 import { AuthModule } from '@weather_wise_backend/src/auth/auth.module';
-import { ContactModule } from '@weather_wise_backend/src/contact/contact.module';
 import { ServiceModule } from '@weather_wise_backend/service/src/service.module';
 import { ConfigModule } from '@weather_wise_backend/shared/src/config/config.module';
 import { SequelizeModule } from '@weather_wise_backend/shared/src/sequelize/sequelize.module';
@@ -15,6 +14,7 @@ import { JwtStrategy } from '@weather_wise_backend/src/auth/strategies/jwt.strat
 import { OpenweatherModule } from '@weather_wise_backend/shared/src/openweather/openweather.module';
 import { WeatherModule } from '@weather_wise_backend/src/weather/weather.module';
 import { ConfigurationModule } from '@weather_wise_backend/src/configuration/configuration.module';
+import { WorkerModule } from '@weather_wise_backend/src/worker/worker.module';
 
 @Module({
   imports: [
@@ -24,11 +24,11 @@ import { ConfigurationModule } from '@weather_wise_backend/src/configuration/con
     ConfigurationModule,
     AuthModule,
     UserModule,
-    ContactModule,
     SequelizeModule,
     FilesModule,
     OpenweatherModule,
     WeatherModule,
+    WorkerModule
   ],
   controllers: [],
   providers: [CryptoService, ConfigurationService, JwtStrategy],

@@ -2,7 +2,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import * as st from 'sequelize-typescript';
 
 import { CommonModel } from '@weather_wise_backend/shared/src/sequelize/common-model';
-import { ContactEntity } from '@weather_wise_backend/src/contact/dto/output/contact.entity';
+import { ContactEntity } from '@weather_wise_backend/src/worker/contact/dto/output/contact.entity';
 
 @st.Table({
   tableName: 'contacts',

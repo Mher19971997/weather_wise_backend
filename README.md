@@ -58,7 +58,7 @@ Weather Wise Backendi a Node.js REST API built with NestJS. to get weather infor
 The API documentation is available via Swagger UI. To access it:
 
 1. Start the application in development mode (`pnpm run start:dev`).
-2. Open your browser and navigate to `http://localhost:6001/DOC`.
+2. Open your browser and navigate to `http://localhost:6001/doc`.
 
 Login Credentials for Swagger UI:
 

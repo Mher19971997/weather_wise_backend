@@ -5,7 +5,6 @@ import ajvMergePatch from 'ajv-merge-patch';
 import ajvErrors from 'ajv-errors';
 import { MemoryStoredFile } from 'nestjs-form-data';
 import { phone } from 'phone';
-import * as cities from "cities-list";
 
 const ajvLib = ajvErrors(
   ajvKeywords(

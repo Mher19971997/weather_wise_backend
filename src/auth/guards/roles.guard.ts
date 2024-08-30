@@ -45,13 +45,17 @@ export class RolesGuard extends AuthGuard implements CanActivate {
     );
     if (type && type === 'Bearer') {
       await this.baseCanActivate(context);
-    }
-
+    } 
+    console.log(reqContext.user,"reqContext.userreqContext.user");
+    
     return this.validateUser(operation, reqContext.user?.userUuid);
   }
 
   protected async validateUser(operation: string, userUuid: string) {
+    console.log(operation,121234);
+    
     const config = await this.getConfiguration(operation);
+    console.log(config,5555);
     
     const configRes = this.checkConfiguration(config);
 
@@ -80,6 +84,8 @@ export class RolesGuard extends AuthGuard implements CanActivate {
   }
 
   protected async getUser(userUuid: string, configs: { operation: string; access: string[] }) {
+    console.log(11122112);
+    
     const user = await this.userService.findOne({ uuid: userUuid })
     if (!user) {
       return null;

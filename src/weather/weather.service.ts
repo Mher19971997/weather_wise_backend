@@ -13,7 +13,6 @@ export class WeatherService {
     constructor(
         private readonly openweatherService: OpenweatherService,
         private readonly userService: UserService,
-
     ) { }
 
     @decorator.cache.Store({ ttl: ms('5 second') })

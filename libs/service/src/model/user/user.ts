@@ -29,6 +29,19 @@ export class User extends CommonModel<UserEntity> {
   })
   declare secret: string;
 
+
+  @st.Column({
+    type: st.DataType.INTEGER,
+  })
+  declare requestLimit: number;
+
+
+  @st.Column({
+    type: st.DataType.INTEGER,
+  })
+  declare requestCount: number;
+
+  
   @st.Column({
     type: st.DataType.JSONB,
   })

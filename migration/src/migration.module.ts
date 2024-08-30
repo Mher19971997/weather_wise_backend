@@ -18,3 +18,4 @@ import { MigrationEntry } from '@weather_wise_backend/migration/src/command/repo
   providers: [CryptoService, MigrationCommand, MigrationService],
 })
 export class MigrationModule {}
+

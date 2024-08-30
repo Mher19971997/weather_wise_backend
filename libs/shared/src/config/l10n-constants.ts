@@ -17,7 +17,7 @@ export namespace l10n {
   export const new_phone_must_different_from_old = 'new_phone_must_different_from_old';
   export const something_went_wrong = 'something_went_wrong';
   export const module_not_payable = `module_not_payable`;
-  export const account_email_verification_subject = `account_email_verification_subject`;
+  export const account_email_expired_subject = `account_email_expired_subject`;
   export const email_from = `Weather`;
   
   export const not_found = `not_found`;
@@ -43,5 +43,6 @@ export namespace l10n {
   export const email_not_verified = `Email not verified`;
   export const account_deactivated = `Your account deactivated`;
   export const basket_item_not_found = `Basket Item not found`;
+  export const expired_limit = `expired_limit`;
   
 }

@@ -30,11 +30,21 @@ import { UUID } from '@weather_wise_backend/shared/src/sequelize/meta';
     secret: {
       type: 'string',
     },
+    requestLimit: {
+      type: 'number',
+    },
+    requestCount: {
+      type: 'number',
+    },
   },
 })
 export class UserEntity extends CommonEntity {
   @ApiProperty({ required: false })
   declare email?: string;
+  @ApiProperty({ required: false })
+  declare requestCount?: number;
+  @ApiProperty({ required: false })
+  declare requestLimit?: string;
   @ApiProperty({ required: false, readOnly: true })
   declare password?: string;
   @ApiProperty({ required: false })

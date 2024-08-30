@@ -10,6 +10,10 @@ import { ConfigService } from '@weather_wise_backend/shared/src/config/config.se
 import { CryptoService } from '@weather_wise_backend/shared/src/crypto/crypto.service';
 import { BearerUser } from './dto/output';
 import { UUID } from '@weather_wise_backend/shared/src/sequelize/meta';
+import { AmqpService } from '@weather_wise_backend/shared/src/amqp/amqp.service';
+import { constants } from '@weather_wise_backend/shared/src/config/constants';
+import { l10n } from '@weather_wise_backend/shared/src/config/l10n-constants';
+import assert from 'assert';
 
 @Injectable()
 export class UserService extends CommonService<
@@ -26,6 +30,8 @@ export class UserService extends CommonService<
     private readonly paginateService: FilterService,
     private readonly configService: ConfigService,
     private readonly cryptoService: CryptoService,
+    private readonly amqpService: AmqpService,
+
   ) {
     super({ model: userModel, paginateService });
   }
@@ -59,6 +65,15 @@ export class UserService extends CommonService<
 
   async incrementRequestCount(uuid: UUID) {
     const user = await super.findOne({ uuid });
-    await this.update({ uuid }, { requestCount: user.requestCount + 1 });
+
+    if (+user.requestLimit <= +user.requestCount) {
+      await this.amqpService.send(constants.EXCHANGE_WORKER, `/send/${constants.USER_LIMIT_EXCEEDED}`, {
+        to: user.email,
+        message: l10n.expired_limit
+      });
+      assert(false, l10n.expired_limit)
+    }
+
+    return await this.update({ uuid }, { requestCount: +user.requestCount + 1 });
   }
 }

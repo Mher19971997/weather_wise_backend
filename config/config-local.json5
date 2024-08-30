@@ -46,7 +46,7 @@
   },
   queue: {
       amqp: {
-        url:"amqp://rabbitmq:rB4dRlyn32FGSth7XdH33MEwWSYZgf70B@rabbitmq:5672"
+        url:"amqp://rabbitmq:rB4dRlyn32FGSth7XdH33MEwWSYZgf70B@127.0.0.1:5672"
       },
   },
   crypto: {
@@ -64,7 +64,7 @@
     jwt: {
       secret: 'vOVH6sdmpaWjRRIqCardxsaa01lwHzfr3.aecefb679scx974085fb61ac8ccecb3c',
       extraOptions: {
-        shortExpiresIn: '1 d',
+        shortExpiresIn: '365 d',
         longExpiresIn: '30 d',
       },
       signOptions: {
@@ -74,6 +74,10 @@
     },
   },
   service: {
+    'internal-user': {
+      email: 'mher.melqonyan.mher123@gmail.com',
+      password: 'glpat-VP4_4aW-eTc9JbEgwgxM',
+    },
     nodemailer: {
       auth: {
         pass: 'vrmovwwjjswcpkgh',

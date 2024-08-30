@@ -18,14 +18,14 @@ export class NodemailerService {
     queueMicrotask(() => this.loadConfig());
   }
 
-  async sendEmailVeriicationCode(data: any | any, isMultiple?: boolean) {
-    const template = await this.templateService.loadTemplate('verification')
-
+  async sendEmailExpireInfo(data: any | any, isMultiple?: boolean) {
+    const template = await this.templateService.loadTemplate('expired')
+    
     const msg = {
       to: data.to,
       from: l10n.email_from,
-      subject: l10n.account_email_verification_subject,
-      html: await template.get('verification')({ code: data.code }),
+      subject: l10n.account_email_expired_subject,
+      html: await template.get('expired')(),
     }
     return this.transporter.sendMail(msg);
   }

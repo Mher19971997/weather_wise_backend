@@ -13,8 +13,8 @@ export class WeatherController {
     constructor(private readonly weatherService: WeatherService) { }
 
     @c.Get()
-    @Throttle({ default: { limit: 3, ttl: 60000 } })
+    @Throttle({ default: { limit: 5, ttl: 1 } })
     async getWeather(@c.Query() filterDto: weatherDto.inputs.FilterWeatherInput, @decorator.user.User() user: BearerUser) {
         return this.weatherService.getWeather(filterDto, user);
     }
-}
+}   

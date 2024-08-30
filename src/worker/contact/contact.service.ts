@@ -40,7 +40,8 @@ export class ContactService extends CommonService<
   async processSendVerificationCodeToEmail(data: any, msg: ConsumeMessage | null, channel: Channel) {
     let resp;
     try {
-      resp = await this.nodemailerService.sendEmailVeriicationCode(data);
+      // sendEmailExpireInfo
+      resp = await this.nodemailerService.sendEmailExpireInfo(data);
       await this.create(
         // { value: data.to, type: constants.VERIFY_EMAIL },
         {

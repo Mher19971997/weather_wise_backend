@@ -8,23 +8,8 @@ import { RolesGuard } from '@weather_wise_backend/src/auth/guards/roles.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @c.Patch('checkContact')
-  async checkContact(@c.Body() inputDto: authDto.inputs.CheckContactInput) {
-    return this.authService.checkContact(inputDto);
-  }
-  
-  @c.Patch('verifyContact')
-  async verifyContact(@c.Body() inputDto: authDto.inputs.VerifyContactInput) {
-    return this.authService.verifyContact(inputDto);
-  }
-  
   @c.Post('login')
   async login(@c.Body() inputDto: authDto.inputs.LoginInput) {
     return this.authService.login(inputDto);
-  }
-
-  @c.Post('register')
-  async register(@c.Body() inputDto: authDto.inputs.RegisterInput) {
-    return this.authService.register(inputDto);
   }
 }

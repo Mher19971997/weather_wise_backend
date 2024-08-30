@@ -8,7 +8,7 @@ import { weatherDto } from '@weather_wise_backend/src/weather/dto';
 describe('WeatherController (e2e)', () => {
   let app: INestApplication;
   let weatherService: WeatherService;
-  const globalBearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTY2ODRmODM2YTVlNzY3NWJiODg0OTk4M2ZmYWFkMDQ4ZGY2MDZmM2M4NGY5OGIxOTMzYzBmZDgxMDVkNTU3OWZmOWQzMjYiLCJpYXQiOjE3MjUwMDgwMjUsImV4cCI6MTc1NjU0NDAyNX0.MTt-33r-_mo_yFJ1qZcS8W__NFhN6uX2hwFddEaaWpc';
+  const globalBearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYzYzODNmMzM5YTRiYzM0NWJlYmQ2OWVkMmZmYWE4MjQ5OGE2MDZmNjdkNWFiOGIxYTM2OThhYjg1NWE4ZjA2OWZmNjg1MjYiLCJpYXQiOjE3MjUwMjE5OTYsImV4cCI6MTc1NjU1Nzk5Nn0.vvvFgJI5M6SESNgAsOWhqLa7BQ9w49uRKJvBe9IJMdk';
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

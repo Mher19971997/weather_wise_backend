@@ -6,15 +6,18 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
+COPY pnpm-lock.yaml ./
+
+RUN npm install -g pnpm
 
 # Copy the rest of the application code
 COPY . .
 
 # Install dependencies
-RUN npm ci
+RUN pnpm install
 
 # Build the NestJS application
-RUN npm run build
+RUN pnpm run build
 
 # Expose port 6001
 EXPOSE 6001

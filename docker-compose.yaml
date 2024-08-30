@@ -8,7 +8,7 @@ services:
     ports:
       - '6379:6379'
     networks:
-      - visit-stats-network
+      - weather-wise-network
   rabbitmq:
     image: rabbitmq:management
     hostname: rabbitmq
@@ -23,7 +23,7 @@ services:
       RABBITMQ_DEFAULT_VHOST: "/"
     command: rabbitmq-server
     networks:
-      - visit-stats-network
+      - weather-wise-network
   postgres:
     image: postgres
     container_name: postgres_container
@@ -37,33 +37,33 @@ services:
     ports:
       - '5433:5432'  # Maps host 5433 to container 5432
     networks:
-      - visit-stats-network
+      - weather-wise-network
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - '6001:6001'
-  #   networks:
-  #     - visit-stats-network
-  #   depends_on:
-  #     - redis
-  #     - rabbitmq
-  #     - postgres
-  #   environment:
-  #     REDIS_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
-  #     RABBITMQ_USER: rabbitmq
-  #     RABBITMQ_PASSWORD: rB4dRlyn32FGSth7XdH33MEwWSYZgf70B
-  #     POSTGRES_DB: dev
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
-  #   command: [ "npm", "run", "start:prod" ]
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '6001:6001'
+    networks:
+      - weather-wise-network
+    depends_on:
+      - redis
+      - rabbitmq
+      - postgres
+    environment:
+      REDIS_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+      RABBITMQ_USER: rabbitmq
+      RABBITMQ_PASSWORD: rB4dRlyn32FGSth7XdH33MEwWSYZgf70B
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh
+    command: [ "pnpm", "run", "start:prod" ]
 volumes:
   db-data:
 
 networks:
-  visit-stats-network:
+  weather-wise-network:
     external: true

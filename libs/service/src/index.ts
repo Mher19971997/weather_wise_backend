@@ -31,7 +31,7 @@ export const server = async (app: NestExpressApplication, mod: any, confPref: st
   
   await swagger(app, mod, confPref);
 
-  await app.listen(Number(appConf.http.port), appConf.http.host);
+  await app.listen(Number(appConf.http.port));
   logger.log(`Application is running on: ${await app.getUrl()}`);
 };
 

@@ -4,8 +4,13 @@
 export NODE_ENV=production
 
 
+
 # Run npm migration
-npm run migration:up
+pnpm run migration:up
+
+pnpm run seed create:users
+
+pnpm run test:e2e
 
 # Run pm2 with the provided configuration file
-npm run start:prod
+pnpm run start:prod

@@ -15,6 +15,7 @@ import { OpenweatherModule } from '@weather_wise_backend/shared/src/openweather/
 import { WeatherModule } from '@weather_wise_backend/src/weather/weather.module';
 import { ConfigurationModule } from '@weather_wise_backend/src/configuration/configuration.module';
 import { WorkerModule } from '@weather_wise_backend/src/worker/worker.module';
+import { CommandModule } from 'nestjs-command';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { WorkerModule } from '@weather_wise_backend/src/worker/worker.module';
     FilesModule,
     OpenweatherModule,
     WeatherModule,
-    WorkerModule
+    WorkerModule,
+    CommandModule
   ],
   controllers: [],
   providers: [CryptoService, ConfigurationService, JwtStrategy],

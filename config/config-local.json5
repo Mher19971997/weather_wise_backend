@@ -9,7 +9,6 @@
     version: 'v1',
     endpoint: '/api',
     http: {
-      host: '127.0.0.1',
       port: 6001,
     },
     swagger: {
@@ -23,7 +22,7 @@
   transports: ['http', 'tcp'],
   db: {
     postgres: {
-      url: 'postgresql://postgres:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@127.0.0.1:5433/dev',
+      url: 'postgresql://postgres:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@postgres:5432/dev',
       logging: 'debug',
       dialect: 'postgres',
       database: 'dev',
@@ -41,12 +40,12 @@
       },
     },
     redis: {
-      url: 'redis://:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@127.0.0.1:6379/1',
+      url: 'redis://:rB4dRlyn38F75Sg13Xd5iNM1wfSYZY708gh@redis:6379/1',
     },
   },
   queue: {
       amqp: {
-        url:"amqp://rabbitmq:rB4dRlyn32FGSth7XdH33MEwWSYZgf70B@127.0.0.1:5672"
+        url:"amqp://rabbitmq:rB4dRlyn32FGSth7XdH33MEwWSYZgf70B@rabbitmq:5672"
       },
   },
   crypto: {
